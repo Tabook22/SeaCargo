@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SeaCargo.Models.DB.tbl_article>
+@{
+    ViewBag.Title = "Index";
+    Layout = "";
+}
+
+
+<!--
+   blog start
+   ============================ -->
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                      <h1 class="heading">Our <span>Services</span> And <span>Activities</span></h1>
+                    <ul class="service-list">
+
+                    @foreach (var itm in Model)
+                    {
+
+                        <li class="wow fadeInLeft" data-wow-duration="300ms" data-wow-delay="300ms">
+                            <div class="blog-img">
+                                <img src="@itm.a_img" alt="blog-img" style="width:293px;height:220px;">
+                            </div>
+                            <div class="content-right">
+                                <h3 style="height:30px;overflow:hidden;"><a href="@Url.Content(@itm.a_link)">@itm.a_title</a></h3>
+                                <p style="height:100px;overflow:hidden;">@itm.a_desc</p>
+                            </div>
+                        </li>
+                    }
+                  </ul>
+                </div>
+            </div><!-- .col-md-12 close -->
+        </div><!-- .row close -->
+    </div><!-- .containe close -->
+</section><!-- #blog close -->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('ul.service-list li:eq(2),ul.service-list li:eq(3)').html(
+                                "<div class="+"content-left"+">"+
+                                   "<h3 style=" + "height:30px;overflow:hidden;" + ">"+"<a href="+ $("a",this).attr("href") +">"+ $("h3", this).text() +"</a>"+ "</h3>" +
+                                  "<p style="+"height:100px;overflow:hidden;"+">" +  $("p",this).text()+ "</>"+"</p>"+
+                                "</div>"+
+                                "<div class="+"blog-img-2"+">"+
+                                    "<img src="+$("img",this).attr('src')+" alt="+"blog-img"+" style="+"width:293px;height:220px;"+"/>" +
+                                "</div>"
+                );
+            });
+    </script>

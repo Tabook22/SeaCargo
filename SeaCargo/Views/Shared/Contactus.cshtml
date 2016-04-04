@@ -1,0 +1,67 @@
+﻿@model SeaCargo.Models.DB.tbl_contact
+<!--
+CONTACT US  start
+============================= -->
+<style>
+    .btnContactus {
+        background: #FF4F02;
+        float: right;
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 0px;
+        border: 0px;
+        width: 512px;
+        height: 50px;
+        padding-top: 15px;
+        -webkit-transition: .3s all;
+        -o-transition: .3s all;
+        transition: .3s all;
+    }
+    .errorMessages{
+      color:#FF4F02;
+      font-weight:bold;
+    }
+</style>
+<section id="contact-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <div>
+                @Html.ValidationSummary(true)
+                @if (ViewBag.Message !=null)
+                {
+                <div style="padding:5px; width:300px;color:red; border:1px solid green">
+                    @ViewBag.Message
+                </div>
+                }
+            </div>
+                <div class="block">
+                    <h1 class="heading wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms"> <span>CONTACT US</span></h1>
+                    <h3 class="title wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">Sign Ussp for <span>Email Alerts</span> </h3>
+                    @using (Html.BeginForm("Contactus", "Home", FormMethod.Post))
+                        {
+                     
+                        <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="600ms">
+                            @Html.EditorFor(x=>x.GEmail, new { htmlAttributes = new { @class = "form-control",placeholder="Write your Email here..." } })
+                            @Html.ValidationMessageFor(x => x.GEmail,"", new {@class="errorMessages"})
+                        @*<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Write  full name here...">*@
+                    </div>
+                    <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="800ms">
+                        @Html.EditorFor(model => model.GName, new { htmlAttributes = new { @class = "form-control",placeholder = "Write your full name here..." } })
+                        @Html.ValidationMessageFor(x=>x.GName,"", new { @class = "errorMessages" })
+                        @*<input type="text" class="form-control" placeholder="Write your email address here...">*@
+                    </div>
+                    <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1000ms">
+                        @Html.TextAreaFor(model => model.GData,  new { @class = "form-control", placeholder = "Write your message here...", @rows = 3 })
+
+                        @*<textarea class="form-control" rows="3" placeholder="Write your message here..."></textarea>*@
+                    </div>
+                    <button class="btn btn-default wow bounceIn btnContactus" data-wow-duration="500ms" data-wow-delay="1300ms" >send your message</button>
+                    }
+                   
+                </div>
+            </div><!-- .col-md-12 close -->
+        </div><!-- .row close -->
+        </div><!-- .container close -->
+    </section><!-- #contact-us close -->
